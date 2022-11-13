@@ -18,9 +18,10 @@ public class Main {
 //        System.out.println(root.find(6));
 //        System.out.println(root.find(1));
 //        System.out.println(root.find(18));
-        root.traversePreOrder();
+//        root.traversePreOrder();
         root.traverseInOrder();
         System.out.println("==========");
-        root.traversePostOrder();
+//        root.traversePostOrder();
+        System.out.println(root.height());
     }
 }
