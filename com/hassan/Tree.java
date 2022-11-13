@@ -16,7 +16,7 @@ public class Tree {
             return "Node:"+value;
         }
     }
-    public Node root;
+    private Node root;
     public void insert(int value)
     {
         var node = new Node(value);
@@ -61,6 +61,48 @@ public class Tree {
             current=current.rightChild;
         }
         return false;
+    }
+    public int factorial(int n)
+    {
+        if(n==1)
+            return n;
+        return n*factorial(n-1);
+    }
+    public  void traversePreOrder()
+    {
+        traversePreOrder(root);
+    }
+    public  void traverseInOrder()
+    {
+        traverseInOrder(root);
+    }
+    public  void traversePostOrder()
+    {
+        traversePostOrder(root);
+    }
+    private void traversePreOrder(Node root)
+    {
+        if(root == null)
+            return;
+        System.out.println(root.value);
+        traversePreOrder(root.leftChild);
+        traversePreOrder(root.rightChild);
+    }
+    private void traverseInOrder(Node root)
+    {
+        if(root == null)
+            return;
+        traverseInOrder(root.leftChild);
+        System.out.println(root.value);
+        traverseInOrder(root.rightChild);
+    }
+    private void traversePostOrder(Node root)
+    {
+        if(root == null)
+            return;
+        traversePostOrder(root.leftChild);
+        traversePostOrder(root.rightChild);
+        System.out.println(root.value);
     }
 
 }
