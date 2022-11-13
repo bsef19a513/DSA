@@ -1,19 +1,18 @@
-import com.hassan.LinkedList;
-
+import com.hassan.*;
 public class Main {
-    public static void main(String[] args)
-    {
-        LinkedList list = new LinkedList();
-        list.addLast(30);
-        list.addLast(40);
-        list.addLast(50);
-        list.addFirst(20);
-        list.addFirst(10);
-        System.out.println(list.size());
-        int[] array = list.toArray();
-        for (int item:
-        array) {
-            System.out.println(item);
-        }
+
+    public static void main(String[] args) {
+        Tree root = new Tree();
+        root.insert(10);
+        root.insert(5);
+        root.insert(15);
+        root.insert(6);
+        root.insert(1);
+        System.out.println(root.find(10));
+        System.out.println(root.find(5));
+        System.out.println(root.find(15));
+        System.out.println(root.find(6));
+        System.out.println(root.find(1));
+        System.out.println(root.find(18));
     }
 }

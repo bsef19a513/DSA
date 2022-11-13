@@ -122,6 +122,32 @@ public class LinkedList {
         }
         return converted;
     }
+    public void reverse()
+    {
+        if(first == last)
+            return;
+        if(!isEmpty())
+        {
+            var prevNode = first;
+            var currentNode = first.next;
+            while (currentNode!=null)
+            {
+                var nextNode = currentNode.next;
+                currentNode.next = prevNode;
+                prevNode = prevNode.next;
+                currentNode = nextNode;
+            }
+        }
+    }
+    public void print()
+    {
+        var temp = first;
+        while(temp!=null)
+        {
+            System.out.println(temp.value);
+            temp = temp.next;
+        }
+    }
     private boolean isEmpty()
     {
         return first == null;
