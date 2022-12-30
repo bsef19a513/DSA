@@ -1,5 +1,7 @@
 package com.hassan;
 
+import java.util.ArrayList;
+
 public class Tree {
     private class Node
     {
@@ -112,9 +114,117 @@ public class Tree {
     {
         if(root == null)
             return -1;
-        if(root.rightChild==null && root.leftChild==null)
+        if(isLeaf(root))
             return 0;
         return 1 + Math.max(height(root.leftChild),height(root.rightChild));
     }
+    public int min()
+    {
+        return min(root);
+    }
+    private int min(Node root)
+    {
+        if (isLeaf(root))
+            return root.value;
+        var left = min(root.leftChild);
+        var right = min(root.rightChild);
+        return Math.min(Math.min(left,right),root.value);
+    }
 
+    public int BSTMin()
+    {
+        if(root==null)
+            throw new IllegalStateException();
+        var current = root;
+        var last = current;
+        while (current!=null)
+        {
+            last = current;
+            current = current.leftChild;
+        }
+        return last.value;
+    }
+    public int BSTMax()
+    {
+        if(root==null)
+            throw new IllegalStateException();
+        var current = root;
+        var last = current;
+        while (current!=null)
+        {
+            last = current;
+            current = current.rightChild;
+        }
+        return last.value;
+    }
+    public boolean equals(Tree tree2)
+    {
+        return equals(root,tree2.root);
+    }
+    private boolean equals(Node first, Node second)
+    {
+        if(first==null && second==null)
+        {
+            return true;
+        }
+        if(first!=null && second!=null)
+        {
+            return first.value== second.value
+                    && equals(first.leftChild,second.leftChild)
+                    && equals(first.rightChild,second.rightChild);
+        }
+        else
+            return false;
+    }
+
+    public boolean isBinarySearchTree()
+    {
+        return isBinarySearchTree(root,Integer.MIN_VALUE,Integer.MAX_VALUE);
+    }
+    private boolean isBinarySearchTree(Node root,int min,int max)
+    {
+        if(root==null)
+            return true;
+        if(root.value<min||root.value>max)
+            return false;
+        return
+                isBinarySearchTree(root.leftChild,min,root.value-1)
+                && isBinarySearchTree(root.rightChild,root.value,max);
+    }
+
+    public ArrayList<Integer> getNodesAtDistance(int distance)
+    {
+        var list = new ArrayList<Integer>();
+        getNodesAtDistance(root,distance,list);
+        return list;
+    }
+
+    private void getNodesAtDistance(Node root, int distance, ArrayList<Integer> list)
+    {
+        if(root==null)
+            return;
+        if(distance==0)
+        {
+            list.add(root.value);
+            return;
+        }
+        getNodesAtDistance(root.leftChild,distance-1,list);
+        getNodesAtDistance(root.rightChild,distance-1,list);
+    }
+
+    public void levelOrderTraversal()
+    {
+        for (int i = 0; i < this.height(); i++) {
+            var list = getNodesAtDistance(i);
+            for (var items:
+                 list) {
+                System.out.println(items);
+            }
+        }
+    }
+
+    private boolean isLeaf(Node root)
+    {
+        return root.rightChild==null && root.leftChild==null;
+    }
 }
