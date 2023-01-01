@@ -4,14 +4,10 @@ import com.sun.jdi.connect.Connector;
 public class Main {
 
     public static void main(String[] args) {
-        Tree root = new Tree();
-        root.insert(7);
-        root.insert(4);
-        root.insert(9);
-        root.insert(1);
-        root.insert(6);
-        root.insert(28);
+        AVLTree root = new AVLTree();
         root.insert(10);
+        root.insert(20);
+        root.insert(15);
 
 //        Tree tree2 = new Tree();
 //        tree2.insert(7);
@@ -41,6 +37,11 @@ public class Main {
 //             list) {
 //            System.out.println(items);
 //        }
-        root.levelOrderTraversal();
+//        root.levelOrderTraversal();
+
+        //****************************************************
+        // AVL Tree
+
+
     }
 }
