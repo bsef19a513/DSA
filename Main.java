@@ -6,12 +6,12 @@ import java.util.Arrays;
 public class Main {
 
     public static void main(String[] args) {
-        Heap heap = new Heap();
-        heap.insert(10);
-        heap.insert(5);
-        heap.insert(17);
-        heap.insert(4);
-        heap.insert(22);
+//        Heap heap = new Heap();
+//        heap.insert(10);
+//        heap.insert(5);
+//        heap.insert(17);
+//        heap.insert(4);
+//        heap.insert(22);
 
 //        Tree tree2 = new Tree();
 //        tree2.insert(7);
@@ -49,12 +49,12 @@ public class Main {
         //****************************************************
         // Heap
 
-        int numbers[] = {5,4,1,2,3,10};
-        Heap heap1 = new Heap();
-        for (var number:
-             numbers) {
-            heap1.insert(number);
-        }
+//        int numbers[] = {5,4,1,2,3,10};
+//        Heap heap1 = new Heap();
+//        for (var number:
+//             numbers) {
+//            heap1.insert(number);
+//        }
         // sort in descending order with heap
 //        while (!heap1.isEmpty())
 //        {
@@ -67,11 +67,25 @@ public class Main {
 //        System.out.println(Arrays.toString(numbers));
 
         // Heapify i.e convert array into heap
-        int nums[] = {5,3,8,4,1,2};
+//        int nums[] = {5,3,8,4,1,2};
 //        MaxHeap.heapify(nums);
 //        System.out.println(Arrays.toString(nums));
 
         // kth Largest Number
-        System.out.println(MaxHeap.kthLargestNumber(nums,6));
+//        System.out.println(MaxHeap.kthLargestNumber(nums,6));
+
+        //********************************************
+        // Trie
+        var trie = new Trie();
+        trie.insert("car");
+        trie.insert("card");
+        trie.insert("care");
+        trie.insert("careful");
+        trie.insert("egg");
+//        System.out.println(trie.contains("can"));
+//        System.out.println(trie.contains("canada"));
+        var words = trie.findWords(null);
+        System.out.println(words);
+//        trie.traverse();
     }
 }
