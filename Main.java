@@ -76,16 +76,38 @@ public class Main {
 
         //********************************************
         // Trie
-        var trie = new Trie();
-        trie.insert("car");
-        trie.insert("card");
-        trie.insert("care");
-        trie.insert("careful");
-        trie.insert("egg");
+//        var trie = new Trie();
+//        trie.insert("car");
+//        trie.insert("card");
+//        trie.insert("care");
+//        trie.insert("careful");
+//        trie.insert("egg");
 //        System.out.println(trie.contains("can"));
 //        System.out.println(trie.contains("canada"));
-        var words = trie.findWords(null);
-        System.out.println(words);
+//        var words = trie.findWords(null);
+//        System.out.println(words);
 //        trie.traverse();
+
+
+        //*********************************************
+        // Graph
+
+        var graph = new Graph();
+        graph.addNode("A");
+        graph.addNode("B");
+        graph.addNode("C");
+        graph.addNode("D");
+        graph.addEdge("A","B");
+        graph.addEdge("B","C");
+//        graph.addEdge("C","A");
+        graph.addEdge("D","A");
+//        graph.print();
+//        graph.removeEdge("A","B");
+//        graph.removeNode("A");
+//        graph.traverseDepthFirst("A");
+//        graph.traverseBreadthFirst("A");
+//        var list = graph.topologicalSort("X");
+//        System.out.println(list);
+        System.out.println(graph.hasCycle());
     }
 }
