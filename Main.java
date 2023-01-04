@@ -92,15 +92,15 @@ public class Main {
         //*********************************************
         // Graph
 
-        var graph = new Graph();
-        graph.addNode("A");
-        graph.addNode("B");
-        graph.addNode("C");
-        graph.addNode("D");
-        graph.addEdge("A","B");
-        graph.addEdge("B","C");
+//        var graph = new Graph();
+//        graph.addNode("A");
+//        graph.addNode("B");
+//        graph.addNode("C");
+//        graph.addNode("D");
+//        graph.addEdge("A","B");
+//        graph.addEdge("B","C");
 //        graph.addEdge("C","A");
-        graph.addEdge("D","A");
+//        graph.addEdge("D","A");
 //        graph.print();
 //        graph.removeEdge("A","B");
 //        graph.removeNode("A");
@@ -108,6 +108,30 @@ public class Main {
 //        graph.traverseBreadthFirst("A");
 //        var list = graph.topologicalSort("X");
 //        System.out.println(list);
-        System.out.println(graph.hasCycle());
+//        System.out.println(graph.hasCycle());
+
+        //*************************************
+        // Undirected Graph
+
+//        var graph = new WeightedGraph();
+//        graph.addNode("A");
+//        graph.addNode("B");
+//        graph.addNode("C");
+//        graph.addEdge("A","B",3);
+//        graph.addEdge("A","C",2);
+//        graph.print();
+
+//        var reversed = StringUtils.reverseString("hello Friends");
+//        var reversedSentence = StringUtils.reverseWords("  hello Friends  ");
+//        var vowelCount = StringUtils.CountVowels("Hello friends");
+//        var isRotation = StringUtils.areRotations("ABCD","DABC");
+//        var word = StringUtils.removeDuplicates("Trees are beautifull");
+//        var frequent = StringUtils.getMaxOccuringChar("hello");
+//        var capitalize = StringUtils.capitalize("  Hello   how re   asd   ");
+//        var anagram = StringUtils.areAnagrams("ABCD","BCDA");
+//        var anagram = StringUtils.areAnagrams("ABCDA","ABDCA");
+        var palindrome = StringUtils.isPalindrome("AB   BAA");
+        System.out.println(palindrome);
     }
+
 }
