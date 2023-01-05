@@ -106,4 +106,119 @@ public class WeightedGraph {
 
         return distances.get(nodes.get(to));
     }
+
+    public Path getShortestPath(String from,String to)
+    {
+        var fromNode = nodes.get(from);
+        var toNode = nodes.get(to);
+        //validation
+        if (fromNode==null||toNode==null)
+            throw new IllegalArgumentException();
+
+        Map<Node,Integer> distances = new HashMap<>();
+        // initialize distances with max Value
+        for (var node: nodes.values())
+            distances.put(node,Integer.MAX_VALUE);
+        distances.replace(fromNode,0);
+
+        //to keep track of previous nodes
+        Map<Node,Node> previousNodes = new HashMap<>();
+
+        // to keep track of visited nodes
+        Set<Node> visited = new HashSet<>();
+
+        PriorityQueue<NodeEntry> queue = new PriorityQueue<>(
+                Comparator.comparingInt(ne -> ne.priority)
+        );
+        queue.add(new NodeEntry(fromNode,0));
+
+        while (!queue.isEmpty())
+        {
+            var current = queue.remove().node;
+            visited.add(current);
+            for (var edge: current.getEdges()) {
+                if(visited.contains(edge.to))
+                    continue;
+
+                var newDistance = distances.get(current) + edge.weight;
+                if (newDistance < distances.get(edge.to))
+                {
+                    distances.replace(edge.to,newDistance);
+                    previousNodes.put(edge.to,current); // updating previous node
+                    queue.add(new NodeEntry(edge.to,newDistance));
+                }
+            }
+        }
+
+        return buildPath(previousNodes,toNode);
+    }
+
+    private Path buildPath(Map<Node,Node> previousNodes, Node toNode)
+    {
+        Stack<Node> stack = new Stack<>();
+        stack.push(toNode);
+        var previous = previousNodes.get(toNode);
+        while (previous!=null)
+        {
+            stack.push(previous);
+            previous = previousNodes.get(previous);
+        }
+
+        var path = new Path();
+        while (!stack.isEmpty())
+            path.add(stack.pop().label);
+        return path;
+    }
+    public boolean hasCycle()
+    {
+        Set<Node> visited = new HashSet<>();
+        for (var node: nodes.values()) {
+            if (!visited.contains(node) && hasCycle(node,null,visited))
+                return true;
+        }
+        return false;
+    }
+    private boolean hasCycle(Node node, Node parent, Set<Node> visited)
+    {
+        visited.add(node);
+        for (var edge: node.getEdges()) {
+            if (edge.to==parent)
+                continue;
+            if (visited.contains(edge.to)|| hasCycle(edge.to,node,visited))
+                return true;
+        }
+        return false;
+    }
+    public WeightedGraph getMinimumSpanningTree()
+    {
+        var tree = new WeightedGraph();
+        if (nodes.isEmpty())
+            return tree;
+        PriorityQueue<Edge> edges = new PriorityQueue<>(
+                Comparator.comparingInt(e->e.weight)
+        );
+        var startNode = nodes.values().iterator().next();
+        edges.addAll(startNode.getEdges());
+        tree.addNode(startNode.label);
+        while (tree.nodes.size()<nodes.size())
+        {
+            if (edges.isEmpty())
+                return tree;
+            var minEdge = edges.remove();
+            var nextNode = minEdge.to;
+            if(tree.containsNode(nextNode.label))
+                continue;
+            tree.addNode(nextNode.label);
+            tree.addEdge(minEdge.from.label, nextNode.label, minEdge.weight);
+            for (var edge: nextNode.getEdges())
+                if (!tree.containsNode(edge.to.label))
+                    edges.add(edge);
+        }
+
+        return tree;
+    }
+    public boolean containsNode(String label)
+    {
+        return nodes.containsKey(label);
+    }
 }

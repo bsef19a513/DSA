@@ -113,13 +113,18 @@ public class Main {
         //*************************************
         // Undirected Graph
 
-//        var graph = new WeightedGraph();
-//        graph.addNode("A");
-//        graph.addNode("B");
-//        graph.addNode("C");
-//        graph.addEdge("A","B",3);
-//        graph.addEdge("A","C",2);
+        var graph = new WeightedGraph();
+        graph.addNode("A");
+        graph.addNode("B");
+        graph.addNode("C");
+        graph.addEdge("A","B",0);
+        graph.addEdge("B","C",0);
+//        graph.addEdge("C","B",0);
+//        var path = graph.getShortestPath("C","A");
+        System.out.println(graph.hasCycle());
 //        graph.print();
+
+
 
 //        var reversed = StringUtils.reverseString("hello Friends");
 //        var reversedSentence = StringUtils.reverseWords("  hello Friends  ");
@@ -130,8 +135,8 @@ public class Main {
 //        var capitalize = StringUtils.capitalize("  Hello   how re   asd   ");
 //        var anagram = StringUtils.areAnagrams("ABCD","BCDA");
 //        var anagram = StringUtils.areAnagrams("ABCDA","ABDCA");
-        var palindrome = StringUtils.isPalindrome("AB   BAA");
-        System.out.println(palindrome);
+//        var palindrome = StringUtils.isPalindrome("AB   BAA");
+//        System.out.println(palindrome);
     }
 
 }
